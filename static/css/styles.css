@@ -1,0 +1,421 @@
+:root {
+    --primary-color: #40F99B;
+    --secondary-color: #2D2D2D;
+    --background-color: #1A1A1A;
+    --card-background: #2D2D2D;
+    --text-color: #FFFFFF;
+    --text-secondary: #A0A0A0;
+    --error-color: #FF5757;
+    --success-color: #40F99B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body.dark-theme {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.navbar {
+    background: var(--secondary-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.user-profile {
+    background: var(--card-background);
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info .user-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.profile-info .user-email {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-card {
+    background: rgba(64, 249, 155, 0.1);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.next-dose {
+    background: var(--secondary-color);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.next-dose p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.next-dose h4 {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.upcoming-meds {
+    background: var(--secondary-color);
+    padding: 1rem;
+    border-radius: 0.75rem;
+}
+
+.upcoming-meds h3 {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.upcoming-meds-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.upcoming-med-item {
+    background: rgba(64, 249, 155, 0.1);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+}
+
+.upcoming-med-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.upcoming-med-item p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.main-content {
+    background: var(--card-background);
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: var(--background-color);
+}
+
+.tab-content {
+    display: block;
+}
+
+.tab-content.hidden {
+    display: none;
+}
+
+/* .medicine-list {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+} */
+/* here is the change */
+.medicine-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: #2d2d2d;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.expand-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.medicine-details {
+    padding: 1rem;
+    background-color: #1e1e1e;
+    border-radius: 0 0 8px 8px;
+    margin-top: 0.5rem;
+}
+
+
+.medicine-card {
+    background: var(--secondary-color);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    position: relative;
+}
+
+.medicine-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.adherence-chart {
+    background: var(--secondary-color);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+}
+
+.chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    height: 150px;
+    padding-top: 1rem;
+}
+
+.bar {
+    flex: 1;
+    background: var(--primary-color);
+    border-radius: 4px;
+    transition: height 0.3s ease;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.calendar-header button {
+    background: var(--secondary-color);
+    border: none;
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.calendar-grid {
+    background: var(--secondary-color);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.calendar-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+}
+
+.calendar-date {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--background-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.calendar-date.active {
+    background: rgba(64, 249, 155, 0.1);
+}
+
+.calendar-date.completed {
+    border: 2px solid var(--success-color);
+}
+
+.calendar-date.has-medicine::after {
+    content: '';
+    position: absolute;
+    bottom: 0.25rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+.add-btn {
+    background: var(--primary-color);
+    color: var(--background-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.logout-btn {
+    background: var(--error-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--secondary-color);
+    border: 1px solid var(--text-secondary);
+    border-radius: 0.5rem;
+    color: var(--text-color);
+}
+
+.duration-input {
+    display: flex;
+    gap: 1rem;
+}
+
+.duration-input input {
+    flex: 1;
+}
+
+.duration-input select {
+    width: 120px;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.button-group button {
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.success-btn {
+    background: var(--success-color);
+    color: var(--background-color);
+    border: none;
+}
+
+.cancel-btn {
+    background: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid var(--text-secondary);
+}
+
+.hidden {
+    display: none;
+}

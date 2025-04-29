@@ -1,0 +1,162 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <title>MedTracker - Dashboard</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+</head>
+
+
+<body class="dark-theme">
+    <nav class="navbar">
+        <h2>MedTracker</h2>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+    </nav>
+    <div class="dashboard-container">
+        <div class="user-profile">
+            <div class="profile-header">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=faces" alt="Profile" class="profile-img">
+                <div class="profile-info">
+                    <h3 class="user-name">Sarah Johnson</h3>
+                    <p class="user-email">sarah@example.com</p>
+                </div>
+            </div>
+
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <span class="stat-value">92%</span>
+                    <span class="stat-label">Adherence</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">4</span>
+                    <span class="stat-label">Active Meds</span>
+                </div>
+            </div>
+            <div class="next-dose">
+                <p>Next dose at</p>
+                <h4 id="nextDoseTime">2:30 PM</h4>
+            </div>
+            <div class="upcoming-meds">
+                <h3>Upcoming Medications</h3>
+                <div id="upcomingMedsList" class="upcoming-meds-list">
+                    <!-- Upcoming medications will be added here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="content-header">
+                <h2>Your Medications</h2>
+                <button onclick="showAddMedicineForm()" class="add-btn">Add Medicine</button>
+            </div>
+
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('overview', this)">Overview</button>
+                <button class="tab-btn" onclick="switchTab('calendar', this)">Calendar</button>
+            </div>
+            <div id="overviewTab" class="tab-content">
+                <div class="adherence-chart">
+                    <h3>Weekly Adherence</h3>
+                    <div class="chart-bars">
+                        <div class="bar" style="height: 90%"></div>
+                        <div class="bar" style="height: 75%"></div>
+                        <div class="bar" style="height: 95%"></div>
+                        <div class="bar" style="height: 80%"></div>
+                        <div class="bar" style="height: 85%"></div>
+                        <div class="bar" style="height: 100%"></div>
+                        <div class="bar" style="height: 95%"></div>
+                    </div>
+                </div>
+                <div id="medicineList" class="medicine-list">
+                    <!-- Medicines will be dynamically added here -->
+                </div>
+            </div>
+            <div id="calendarTab" class="tab-content hidden">
+                <div class="calendar-header">
+                    <button onclick="previousMonth()">&lt;</button>
+                    <h3 id="currentMonth"></h3>
+                    <button onclick="nextMonth()">&gt;</button>
+                </div>
+                <div class="calendar-grid">
+                    <div class="calendar-days">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                    </div>
+                    <div id="calendarDates" class="calendar-dates">
+                        <!-- Calendar dates will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Medicine Modal -->
+    <div id="addMedicineModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Add New Medicine</h2>
+            <form onsubmit="handleAddMedicine(event)">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="medicineName">Medicine Name</label>
+                    <input type="text" id="medicineName" required>
+                </div>
+                <div class="form-group">
+                    <label for="dosage">Dosage</label>
+                    <input type="text" id="dosage" required>
+                </div>
+                <div class="form-group">
+                    <label for="frequency">Frequency</label>
+                    <select id="frequency" required>
+                        <option value="daily">Daily</option>
+                        <option value="twice">Twice a day</option>
+                        <option value="thrice">Thrice a day</option>
+                        <option value="weekly">Weekly</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration</label>
+                    <div class="duration-input">
+                        <input type="number" id="durationValue" min="1" required>
+                        <select id="durationType">
+                            <option value="days">Days</option>
+                            <option value="months">Months</option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="startDate">Start Date</label>
+                    <input type="date" id="startDate" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit">Save</button>
+                    <button type="button" onclick="hideAddMedicineForm()" class="cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Mark as Taken Modal -->
+    <div id="markAsTakenModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Mark Medicine as Taken</h2>
+            <div id="markAsTakenContent"></div>
+            <div class="button-group">
+                <button onclick="confirmMedicineTaken()" class="success-btn">Confirm</button>
+                <button onclick="hideMarkAsTakenModal()" class="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{% static "js/dashboard.js" %}"></script>
+</body>
+</html>
