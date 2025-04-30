@@ -1,0 +1,28 @@
+# Virtual environment
+venv/
+.env
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Django-related
+*.sqlite3
+db.sqlite3
+
+# VSCode settings (optional)
+.vscode/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Static and media (optional - if you use collectstatic)
+staticfiles/
+media/
+
+# Pipenv
+Pipfile.lock
+
+# Pytest cache
+.pytest_cache/

@@ -189,12 +189,6 @@ body.dark-theme {
     display: none;
 }
 
-/* .medicine-list {
-    display: grid;
-    gap: 1rem;
-    margin-bottom: 2rem;
-} */
-/* here is the change */
 .medicine-header {
     display: flex;
     justify-content: space-between;
@@ -216,7 +210,6 @@ body.dark-theme {
     border-radius: 0 0 8px 8px;
     margin-top: 0.5rem;
 }
-
 
 .medicine-card {
     background: var(--secondary-color);
@@ -337,17 +330,22 @@ body.dark-theme {
     cursor: pointer;
 }
 
+/* -------------------------- */
+/* FORM MODAL LAYOUT & WIDGETS */
+/* -------------------------- */
+
 .modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+}
+.modal.hidden {
+    display: none;
 }
 
 .modal-content {
@@ -355,7 +353,20 @@ body.dark-theme {
     padding: 2rem;
     border-radius: 1rem;
     width: 90%;
-    max-width: 500px;
+    max-width: 600px;    /* widened */
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.form-left,
+.form-right {
+    flex: 1 1 240px;
 }
 
 .form-group {
@@ -382,40 +393,60 @@ body.dark-theme {
     display: flex;
     gap: 1rem;
 }
+.duration-input input { flex: 1; }
+.duration-input select { width: 120px; }
 
-.duration-input input {
-    flex: 1;
-}
-
-.duration-input select {
-    width: 120px;
-}
-
+/* hide the old in-form button group */
 .button-group {
-    display: flex;
-    gap: 1rem;
+    display: none;
 }
 
-.button-group button {
-    flex: 1;
-    padding: 0.75rem;
+/* dynamic time/day slots */
+#timeSlots {
+    margin-top: 1rem;
+}
+#timeSlots .time-slot {
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    background: var(--secondary-color);
+    border: 1px solid var(--text-secondary);
+    border-radius: 0.5rem;
+    color: var(--text-color);
+}
+
+/* new footer buttons */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;  
+    margin-top: 1.5rem;
+}
+.modal-footer .btn-save {
+    background: var(--success-color);
+    color: var(--background-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
     cursor: pointer;
     font-weight: 500;
 }
-
-.success-btn {
-    background: var(--success-color);
-    color: var(--background-color);
-    border: none;
-}
-
-.cancel-btn {
+.modal-footer .btn-cancel {
     background: var(--secondary-color);
     color: var(--text-color);
     border: 1px solid var(--text-secondary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
 }
 
 .hidden {
     display: none;
+}
+
+@media (max-width: 600px) {
+    .modal-form-container {
+        flex-direction: column;
+    }
 }

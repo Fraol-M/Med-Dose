@@ -3,9 +3,8 @@
 <html lang="en">
 <head>
     <title>MedTracker - Dashboard</title>
-    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-
 
 <body class="dark-theme">
     <nav class="navbar">
@@ -21,7 +20,6 @@
                     <p class="user-email">sarah@example.com</p>
                 </div>
             </div>
-
 
             <div class="stats-container">
                 <div class="stat-card">
@@ -50,7 +48,6 @@
                 <h2>Your Medications</h2>
                 <button onclick="showAddMedicineForm()" class="add-btn">Add Medicine</button>
             </div>
-
 
             <div class="tabs">
                 <button class="tab-btn active" onclick="switchTab('overview', this)">Overview</button>
@@ -103,43 +100,57 @@
             <h2>Add New Medicine</h2>
             <form onsubmit="handleAddMedicine(event)">
                 {% csrf_token %}
-                <div class="form-group">
-                    <label for="medicineName">Medicine Name</label>
-                    <input type="text" id="medicineName" required>
-                </div>
-                <div class="form-group">
-                    <label for="dosage">Dosage</label>
-                    <input type="text" id="dosage" required>
-                </div>
-                <div class="form-group">
-                    <label for="frequency">Frequency</label>
-                    <select id="frequency" required>
-                        <option value="daily">Daily</option>
-                        <option value="twice">Twice a day</option>
-                        <option value="thrice">Thrice a day</option>
-                        <option value="weekly">Weekly</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="duration">Duration</label>
-                    <div class="duration-input">
-                        <input type="number" id="durationValue" min="1" required>
-                        <select id="durationType">
-                            <option value="days">Days</option>
-                            <option value="months">Months</option>
-                        </select>
+
+                <!-- two-column form wrapper -->
+                <div class="modal-form-container">
+
+                    <div class="form-left">
+                        <div class="form-group">
+                            <label for="medicineName">Medicine Name</label>
+                            <input type="text" id="medicineName" name="medicine_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dosage">Dosage</label>
+                            <input type="text" id="dosage" name="dosage" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="frequency">Frequency</label>
+                            <select id="frequency" name="frequency" required>
+                                <option value="">Select frequency</option>
+                                <option value="daily">Daily</option>
+                                <option value="twice">Twice a day</option>
+                                <option value="thrice">Thrice a day</option>
+                                <option value="weekly">Weekly</option>
+                            </select>
+                        </div>
+                        <!-- dynamic time/day slots appear here -->
+                        <div id="timeSlots"></div>
                     </div>
+
+                    <div class="form-right">
+                        <div class="form-group">
+                            <label for="durationValue">Duration</label>
+                            <div class="duration-input">
+                                <input type="number" id="durationValue" name="duration_value" min="1" required>
+                                <select id="durationType" name="duration_type">
+                                    <option value="days">Days</option>
+                                    <option value="months">Months</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="startDate">Start Date</label>
+                            <input type="date" id="startDate" name="start_date" required>
+                        </div>
+                    </div>
+
                 </div>
+                <!-- /.modal-form-container -->
 
-
-
-                <div class="form-group">
-                    <label for="startDate">Start Date</label>
-                    <input type="date" id="startDate" required>
-                </div>
-                <div class="button-group">
-                    <button type="submit">Save</button>
-                    <button type="button" onclick="hideAddMedicineForm()" class="cancel-btn">Cancel</button>
+                <!-- new footer for action buttons -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn-save">Save</button>
+                    <button type="button" onclick="hideAddMedicineForm()" class="btn-cancel">Cancel</button>
                 </div>
             </form>
         </div>
@@ -157,6 +168,6 @@
         </div>
     </div>
     
-    <script src="{% static "js/dashboard.js" %}"></script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
 </body>
 </html>
